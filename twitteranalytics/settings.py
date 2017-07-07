@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -25,7 +24,8 @@ SECRET_KEY = 'yy%a(6(sfd%0&#4@4a418qh)n*s(mj%%ayr=(qom&!tat9s9_!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -70,16 +70,19 @@ TEMPLATES = [
         },
     },
 ]
-
+HAYSTACK_URL = os.environ.get('WEBSOLR_URL', '')
 
 HAYSTACK_CONNECTIONS = {
-'default': {
-'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-'URL': 'http://127.0.0.1:8983/solr/analytics'
-},
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': HAYSTACK_URL
+    },
 }
 
 WSGI_APPLICATION = 'twitteranalytics.wsgi.application'
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 
 # Database
@@ -104,7 +107,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

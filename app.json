@@ -1,0 +1,8 @@
+{
+  "name": "Twitter Analytics",
+  "description": "Give Twitter Data Visualization in Graphs",
+  "image": "heroku/python",
+  "repository": "https://github.com/Abhisheksoni1/twitteranalytics.git",
+  "keywords": ["python", "django" ],
+  "addons": [ "websolr" ]
+}
