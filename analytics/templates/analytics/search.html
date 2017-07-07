@@ -1,0 +1,33 @@
+{% extends "analytics/base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+    <div style="width: 100%;">
+        <div style="float:left; width: 40%">
+            <a href="{% url "daily_graph" %}">HOME</a></p>
+        </div>
+        <div style="float:right;">
+            <a href="{% url "pie_graph" %}">See Location Wise Pie Chart</a></p>
+        </div>
+    </div>
+
+    {% if "query" in request.GET %}
+        <h1>Tweets containing "{{ cd.query }}"</h1>
+        <h3>Found {{ total_results }} result{{ total_results|pluralize}}</h3>
+        {% for result in results %}
+            {% with post=result.object %}
+                <h4><a href=".">{{ post.post_id }}  {{ post.created }}</a></h4>
+                {{ post.text|linebreaks }}
+            {% endwith %}
+        {% empty %}
+            <p>There are no results for your query.</p>
+        {% endfor %}
+
+        <p><a href="{% url "post_search" %}">Search again</a></p>
+    {% else %}
+        <h1>Search for posts</h1>
+        <form action=" " method="get">
+            {{ form.as_p }}
+            <input type="submit" value="Search">
+        </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "analytics/base.html" %}
+{% block title %}Daily{% endblock %}
+{% block content %}
+    <p><h1>Number of Tweet/Day</h1>
+    <div style="width: 100%;">
+        <div style="float:left; width: 40%">
+            <a href="{% url "post_search" %}">Search Inside Tweets</a></p>
+        </div>
+        <div style="float:right; margin-right: 480px">
+            <a href="{% url "pie_graph" %}">See Location Wise Pie Chart</a></p>
+        </div>
+    </div>
+
+    <img src="data:image/png;base64,{{ daily|safe }}">
+{% endblock %}
