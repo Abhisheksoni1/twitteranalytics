@@ -74,6 +74,13 @@ def daily_graph(request):
 
 
 def post_search(request):
+    """we use SearchQuerySet to perform a search for
+indexed TwitterData objects whose main content contains the given query. The load_all()
+method loads all related TwitterData objects from the database at once. With this method,
+we populate the search results with the database objects to avoid per-object access to
+the database when iterating over results to access object data. Finally, we store the
+total number of results in a total_results variable and pass the local variables as
+context to render a template."""
     form = SearchForm()
     if 'query' in request.GET:
         form = SearchForm(request.GET)
