@@ -6,7 +6,7 @@ django-extensions==1.8.1
 django-haystack==2.4.0
 djangotoolbox==1.8.0
 idna==2.5
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 matplotlib==2.0.2
 numpy==1.13.0
